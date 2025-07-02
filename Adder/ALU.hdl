@@ -1,0 +1,35 @@
+// if (zx==1) sets x=0  |
+//                      | out = x1
+// if (zx==0) sets x=x  |
+
+// if (nx==1) sets x=!x  |
+//                      | out = x2
+// if (nx==0) sets x=x  |
+
+// Possible combinations
+//      zx      nx      out
+//      0    |  0     | x
+//      0    |  1     | !x
+//      1    |  0     | 0
+//      1    |  1     | 1
+        
+
+
+CHIP ALU{4
+    IN x[16], y[16], zx, nx, zy, ny, f, no;
+    OUT out[16], zr, ng;
+
+    PARTS:
+    Mux16(a=x, b=false, sel=zx, out=zxOut);
+    Not16(in=zxOut, out=notX);
+    Mux16(a=zxOut, b=notX, sel=nx, out=nxOut);
+
+    Mux16(a=y, b=false, sel=zy, out=zyOut);
+    Not16(in=zyOut, out=notY);
+    Mux16(a=zyOut, b=notY, sel=ny, out=nyOut);
+
+    
+
+
+
+}
